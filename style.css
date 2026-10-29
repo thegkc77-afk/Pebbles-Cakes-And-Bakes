@@ -19,6 +19,11 @@
 }
 
 /* ── Base body ──────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
 body {
   background-color: #F8F1E5;
   color: #211512;

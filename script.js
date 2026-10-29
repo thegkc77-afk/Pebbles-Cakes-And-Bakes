@@ -149,16 +149,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ── 5. SMOOTH SCROLL (same-page anchor links only) ─────── */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  /* ── 5. SMOOTH SCROLL (same-page anchor links) ──────────── */
+  const isHomePage = currentPage === 'index.html' || currentPage === '';
+  const anchorSelector = isHomePage ? 'a[href^="#"], a[href^="index.html#"]' : 'a[href^="#"]';
+
+  document.querySelectorAll(anchorSelector).forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      const href   = this.getAttribute('href');
-      if (href === '#') return;
+      const rawHref = this.getAttribute('href');
+      const href = rawHref.replace(/^index\.html/, '');
+      if (!href || href === '#') return;
       const target = document.querySelector(href);
       if (target && header) {
         e.preventDefault();
         const top = target.getBoundingClientRect().top + window.scrollY - header.offsetHeight - 12;
         window.scrollTo({ top, behavior: 'smooth' });
+        history.pushState(null, '', href);
       }
     });
   });
@@ -174,6 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const linkPage = href.split('/').pop().split('#')[0] || 'index.html';
 
     if (currentPage === 'cakes.html' && linkPage === 'cakes.html') {
+      link.classList.add('nav-active');
+    } else if (currentPage === 'about.html' && linkPage === 'about.html') {
       link.classList.add('nav-active');
     } else if (currentPage === 'index.html' && linkPage === 'index.html') {
       // scrollspy will handle the active link on homepage
@@ -231,5 +238,93 @@ document.addEventListener('DOMContentLoaded', () => {
       showToast(`<strong>${product.name}</strong> added to cart (×${newQty})`);
     });
   });
+
+
+  /* ── 8. CONTACT FORM DEMO VALIDATION ─────────────────────── */
+  const contactForm = document.getElementById('frem-contact-form');
+  const contactStatus = document.getElementById('contact-form-status');
+
+  if (contactForm && contactStatus) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nameInput = document.getElementById('contact-name');
+      const emailInput = document.getElementById('contact-email');
+      const subjectInput = document.getElementById('contact-subject');
+      const messageInput = document.getElementById('contact-message');
+
+      let isValid = true;
+
+      function validateField(input, condition, errorMsg) {
+        if (!input) return;
+        const errorEl = input.parentElement.querySelector('.form-error');
+        if (!condition) {
+          input.classList.add('border-red-500', 'bg-red-50/50');
+          if (errorEl) {
+            errorEl.textContent = errorMsg;
+            errorEl.classList.remove('hidden');
+          }
+          isValid = false;
+        } else {
+          input.classList.remove('border-red-500', 'bg-red-50/50');
+          if (errorEl) {
+            errorEl.classList.add('hidden');
+          }
+        }
+      }
+
+      validateField(
+        nameInput,
+        nameInput && nameInput.value.trim().length >= 2,
+        'Please enter your full name (at least 2 characters).'
+      );
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      validateField(
+        emailInput,
+        emailInput && emailPattern.test(emailInput.value.trim()),
+        'Please enter a valid email address.'
+      );
+
+      validateField(
+        subjectInput,
+        subjectInput && subjectInput.value.trim().length >= 2,
+        'Please enter a subject.'
+      );
+
+      validateField(
+        messageInput,
+        messageInput && messageInput.value.trim().length >= 10,
+        'Please write a message with at least 10 characters.'
+      );
+
+      if (!isValid) {
+        contactStatus.className = 'mb-6 p-4 rounded-2xl text-xs sm:text-sm bg-red-100/90 text-red-800 border border-red-300';
+        contactStatus.innerHTML = `<strong>Please correct the highlighted fields</strong> before submitting.`;
+        contactStatus.classList.remove('hidden');
+        return;
+      }
+
+      // Demonstration mode state
+      const userName = nameInput.value.trim();
+      contactForm.reset();
+
+      contactStatus.className = 'mb-6 p-4 rounded-2xl text-xs sm:text-sm bg-green-100/90 text-green-900 border border-green-300';
+      contactStatus.innerHTML = `
+        <div class="flex items-start space-x-2.5">
+          <svg class="w-5 h-5 text-green-700 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+          <div>
+            <p class="font-bold text-sm">Thank you, ${userName}! (Demonstration Mode)</p>
+            <p class="mt-0.5">Your inquiry has passed frontend validation. Note: No backend server is connected to dispatch actual emails, but all form fields are validated and ready.</p>
+          </div>
+        </div>
+      `;
+      contactStatus.classList.remove('hidden');
+
+      showToast(`Inquiry validated for ${userName} (demo mode)`);
+    });
+  }
 
 });
