@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frem — Artisanal Bakery &amp; Patisserie</title>
+  <meta name="description" content="Frem Artisanal Bakery &amp; Patisserie — Handcrafted layered cakes, cupcakes and artisanal delights, baked fresh every morning. Order now for sweet moments.">
+
+  <!-- Google Fonts: Great Vibes · Playfair Display · Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Tailwind Custom Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream:            '#F7EFE3',
+              'cream-light':    '#FAF5EC',
+              'cream-card':     '#FAF4EB',
+              peach:            '#E6BFB0',
+              'peach-soft':     '#ECD8CD',
+              terracotta:       '#84351F',
+              'terracotta-dark':'#6B2A18',
+              'pink-btn':       '#F1D8D3',
+              'pink-btn-hover': '#EAC7C0',
+              chocolate:        '#211512',
+              muted:            '#7A645B',
+            }
+          },
+          fontFamily: {
+            serif:  ['"Playfair Display"', 'Georgia', 'serif'],
+            script: ['"Great Vibes"', 'cursive'],
+            sans:   ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Project Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased">
+
+  <!-- ================================================================
+       HEADER
+  ================================================================ -->
+  <header id="main-header" class="px-6 md:px-12 lg:px-20">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="index.html" class="font-script-logo text-4xl md:text-5xl text-[#211512] tracking-wide hover:opacity-90 transition-opacity">
+        Frem
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-sm font-medium text-[#4A3B32]">
+        <a href="index.html#home"    class="hover:text-brand-terracotta transition-colors">Home</a>
+        <a href="index.html#explore" class="hover:text-brand-terracotta transition-colors">Explore</a>
+        <a href="cakes.html"         class="hover:text-brand-terracotta transition-colors">Our Cakes</a>
+        <a href="index.html#about"   class="hover:text-brand-terracotta transition-colors">About</a>
+        <a href="index.html#contact" class="hover:text-brand-terracotta transition-colors">Contact</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center space-x-3">
+        <!-- Cart Icon with badge -->
+        <a href="cakes.html" aria-label="Shopping cart" class="relative p-2 text-[#4A3B32] hover:text-brand-terracotta transition-colors rounded-full hover:bg-[#EFE3D5]">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13M7 13L5.4 5M10 21a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+          </svg>
+          <span id="cart-badge"
+                class="cart-badge hidden absolute -top-0.5 -right-0.5 w-4 h-4 text-[9px] font-bold bg-[#84351F] text-white rounded-full flex items-center justify-center">0</span>
+        </a>
+
+        <!-- Order Now (desktop) -->
+        <a href="cakes.html"
+           class="hidden sm:inline-flex bg-[#84351F] hover:bg-[#6E2A17] text-white text-xs md:text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-200 shadow-sm shadow-[#84351F]/20">
+          Order Now
+        </a>
+
+        <!-- Hamburger (mobile) -->
+        <button id="mobile-menu-btn" aria-label="Open menu"
+                class="md:hidden p-2 text-[#4A3B32] hover:text-brand-terracotta transition-colors rounded-full hover:bg-[#EFE3D5]">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================================================================
+       MOBILE NAV OVERLAY
+  ================================================================ -->
+  <div id="mobile-nav"
+       class="hidden-nav fixed inset-0 z-[60] bg-[#F8F1E5] flex flex-col items-center justify-center space-y-8">
+
+    <!-- Close button -->
+    <button id="mobile-close-btn" aria-label="Close menu"
+            class="absolute top-6 right-6 p-2 text-[#4A3B32] hover:text-brand-terracotta transition-colors rounded-full hover:bg-[#EFE3D5]">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <span class="font-script-logo text-5xl text-[#211512]">Frem</span>
+
+    <nav class="flex flex-col items-center space-y-6 text-xl font-medium text-[#4A3B32]">
+      <a href="index.html#home"    class="hover:text-brand-terracotta transition-colors">Home</a>
+      <a href="index.html#explore" class="hover:text-brand-terracotta transition-colors">Explore</a>
+      <a href="cakes.html"         class="hover:text-brand-terracotta transition-colors">Our Cakes</a>
+      <a href="index.html#about"   class="hover:text-brand-terracotta transition-colors">About</a>
+      <a href="index.html#contact" class="hover:text-brand-terracotta transition-colors">Contact</a>
+    </nav>
+
+    <a href="cakes.html"
+       class="bg-[#84351F] hover:bg-[#6E2A17] text-white text-sm font-medium px-8 py-3 rounded-full transition-all duration-200 shadow-sm">
+      Order Now
+    </a>
+  </div>
+
+  <!-- ================================================================
+       HERO SECTION
+  ================================================================ -->
+  <section id="home" data-purpose="hero-banner"
+           class="relative overflow-hidden pt-32 pb-16 lg:pt-36 lg:pb-28 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+      <!-- Left: Copy -->
+      <div class="lg:col-span-6 z-10 flex flex-col items-start pr-0 lg:pr-6 reveal">
+
+        <span class="text-xs uppercase tracking-widest font-semibold text-[#965A48] mb-3">
+          Artisan Bakery &amp; Patisserie
+        </span>
+
+        <h1 class="font-serif-heading text-4xl sm:text-5xl md:text-6xl text-[#211512] font-normal leading-[1.12] mb-6">
+          Sweet Moments<br>Start Here
+        </h1>
+
+        <p class="text-[#6D5A50] text-sm md:text-base leading-relaxed max-w-md mb-8">
+          The delicate taste of handcrafted layered cakes and artisanal delights,
+          baked fresh every morning to turn ordinary days into memories.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex items-center flex-wrap gap-5 mb-14">
+          <a href="cakes.html" class="btn-pill-primary">
+            Shop Now
+          </a>
+          <a href="cakes.html"
+             class="group flex items-center text-sm font-semibold text-[#3D2C24] hover:text-[#84351F] transition-colors">
+            <span>Explore Our Cakes</span>
+            <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                 fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Icon Bar -->
+        <div class="flex items-center space-x-6 text-[#755D52] pt-4 border-t border-[#E8D9CC]/60 w-full max-w-xs"
+             data-purpose="social-features-bar">
+
+          <button aria-label="Birthday and event catering" class="hover:text-brand-terracotta transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 15.5a5.5 5.5 0 01-11 0V11H6a2 2 0 00-2 2v7a2 2 0 002 2h12a2 2 0 002-2v-4.5zM12 4v4m0-4a2 2 0 100-4 2 2 0 000 4z"/>
+            </svg>
+          </button>
+
+          <button aria-label="Gift Packaging" class="hover:text-brand-terracotta transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </button>
+
+          <button aria-label="Made with care" class="hover:text-brand-terracotta transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </button>
+
+          <button aria-label="Handcrafted recipes" class="hover:text-brand-terracotta transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Right: Cake Image -->
+      <div class="lg:col-span-6 relative flex justify-center lg:justify-end items-center reveal">
+        <!-- Glow -->
+        <div class="absolute w-80 h-80 sm:w-96 sm:h-96 rounded-full bg-[#EED8C6]/50 filter blur-2xl -z-0"></div>
+        <!-- Image -->
+        <div class="relative z-10 w-full max-w-lg lg:max-w-none float-anim">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsppejCwJ8pJ9fJzC9Wv2BVbkT7TmHkCZbCwRFdE2XCMfb0ENBvfGFjwI4Hte0izfpGqwhLrcW7fnx9ZIne6EYpPm1DzleaRvC1p2mXVx7ty3RyZVeYkDF7eb16zDINwSlGViiti1WobYcfMrniGO4zVV6gHIJMasZqenqT6jW4Elfd_MMdri8d7_wFDRU__BBNN5k26-Dm5qMlCB8efkgc86PErcpYTvHRAab_64"
+            alt="Handcrafted layered strawberry sponge cake with vanilla frosting and fresh strawberry toppings"
+            class="w-full h-[360px] sm:h-[440px] md:h-[490px] object-cover object-center rounded-3xl shadow-xl shadow-[#926B58]/15 hover:scale-[1.01] transition-transform duration-500"
+          >
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FEATURED CAKES SECTION
+  ================================================================ -->
+  <section id="cakes" data-purpose="featured-products"
+           class="py-16 md:py-24 px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
+
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+      <h2 class="font-serif-heading text-3xl sm:text-4xl text-[#211512] font-normal mb-3">
+        Hold a cake
+      </h2>
+      <p class="text-[#786154] text-sm md:text-base">
+        Speak out to each dessert preference with our artisanal creations.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 reveal-child">
+
+      <!-- Card 1 -->
+      <article class="product-card group">
+        <div class="rounded-2xl overflow-hidden mb-5 bg-[#EFE3D5] aspect-[4/3]">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1mpig4zLNhdrZEwGANdBCFURrPFDA1gTGZJrT0zlqtrrFKfogs5vGlHK3Jn9N11Rn4-XuEYV8f0kJpX6FMQIaUiBcAZRa1Y7mj2paJQfRCZ9G4Ee2KpnFdpSD6rK1B046LW841PRCN_7Z-8Ws6BTLpzM6MOXWDC99ITCkh7cZV4vcDUOQc4OmkfnBGpr9MNssuFr_MLyT0TCcdX-K0fogjyHC1tnTa4z7GIFO3jw"
+            alt="Artisanal gourmet cupcake with delicate swirled buttercream frosting"
+            class="w-full h-full object-cover card-img-zoom"
+          >
+        </div>
+        <div class="flex items-center justify-between pt-1">
+          <div>
+            <h3 class="font-serif-heading text-lg font-semibold text-[#211512] mb-0.5">Artisanal Cupcake</h3>
+            <p class="text-xs text-[#8A7569] mb-1">Delicate Buttercream</p>
+            <a href="#menu"
+               class="inline-flex items-center text-xs font-semibold text-[#211512] hover:text-brand-terracotta transition-colors group-hover:underline">
+              <span>Quick View Menu</span>
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+          <a href="#details" aria-label="View Artisanal Cupcake" class="btn-circle-arrow">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="product-card group">
+        <div class="rounded-2xl overflow-hidden mb-5 bg-[#EFE3D5] aspect-[4/3]">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0ViA6NRuJF1d6CueGb6hbY-_11fRjhFoEdXa-vL4yLGgnGpodHuSJ9Eh3zk9frAO6bOire5hYFDX0C9N7Uisf56DzJ7d-st7uLZ5dQCZPMJ-cmwQfI35kXbUpxoq_u3RreKXihi0Sj_1MYulinXHHA5BhT_TmguApmDdzlIPh-t3X90yMwqC-E6PQNIzOWeDaBDCLrr4Wi826-vnZgMdYsvphEX5c6OhqaMho0-c"
+            alt="Sarfoodo Harkewere layered chocolate sponge cake with chocolate sprinkles and strawberries"
+            class="w-full h-full object-cover card-img-zoom"
+          >
+        </div>
+        <div class="flex items-center justify-between pt-1">
+          <div>
+            <h3 class="font-serif-heading text-lg font-semibold text-[#211512] mb-0.5">Sarfoodo Harkewere</h3>
+            <p class="text-xs text-[#8A7569] mb-1">Gentle Tart</p>
+            <a href="#menu"
+               class="inline-flex items-center text-xs font-semibold text-[#211512] hover:text-brand-terracotta transition-colors group-hover:underline">
+              <span>Quick View Menu</span>
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+          <a href="#details" aria-label="View Sarfoodo Harkewere" class="btn-circle-arrow">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="product-card group">
+        <div class="rounded-2xl overflow-hidden mb-5 bg-[#EFE3D5] aspect-[4/3]">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQxiYC-lOvaq9Is2AQXyonw-CAChVLkpVhGej8bSj8N0sTxL49wsW5nMtz3HbOsbxT3ECqHAnYnSZT5iDqRIq54A5YLGejT3YxgT7k8mdd8-3v0d2lU8-uehZ_zOAx8vr9YPmr-gVud9B50cUf9GQ2z0XixA0Dr3qOz_S7EV3uobiNdtz0y2mwglZMZM91sGQLhEWZKw8r2wOmJtcIEqbrTcMvmAgYlStUy8rVJRw"
+            alt="Cotig Cerbroer fresh sponge cake slice with creamy white swirl frosting"
+            class="w-full h-full object-cover card-img-zoom"
+          >
+        </div>
+        <div class="flex items-center justify-between pt-1">
+          <div>
+            <h3 class="font-serif-heading text-lg font-semibold text-[#211512] mb-0.5">Cotig Cerbroer</h3>
+            <p class="text-xs text-[#8A7569] mb-1">Almond</p>
+            <a href="#menu"
+               class="inline-flex items-center text-xs font-semibold text-[#211512] hover:text-brand-terracotta transition-colors group-hover:underline">
+              <span>Quick Lavender</span>
+              <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+          <a href="#details" aria-label="View Cotig Cerbroer" class="btn-circle-arrow">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       PROMO / SIGNATURE BANNER SECTION
+  ================================================================ -->
+  <section id="explore" data-purpose="service-coffee-banner"
+           class="promo-gradient py-14 md:py-20 px-6 md:px-12 lg:px-20 border-t border-[#DFB7A8]">
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+
+      <!-- Cupcake Visual -->
+      <div class="md:col-span-5 flex justify-center md:justify-start reveal">
+        <div class="promo-circle w-64 h-64 sm:w-80 sm:h-80">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPoqxFvZ53JSzuOKJYLIKZawucgfzwu0WuISnlJfoPld9TSA4kLjtfUFfOciBUpo1yEHO6TtjYZnii6zffKm-fZC-kc_EyM79mvoHJtImuNrV-3n-1E6o_luzAnAgh_o2Tt6wHGQAMOKZCgLslkhl5HKCzyK-_a8n850hcIf2Jcj4qiMnG96oUCY9maTdOijbb9T6RJkfxMjLb9ZqlyDMQzW2vx8mEFaPEqvurvpk"
+            alt="Handcrafted chocolate cupcake with whipped vanilla butter swirl and strawberry"
+            class="w-full h-full object-cover rounded-full"
+          >
+        </div>
+      </div>
+
+      <!-- Promo Copy -->
+      <div class="md:col-span-7 flex flex-col items-start pl-0 md:pl-4 reveal">
+        <span class="text-xs uppercase tracking-wider font-medium text-[#7D4333] mb-2">
+          Hesixture the
+        </span>
+        <h2 class="font-serif-heading text-3xl sm:text-4xl md:text-5xl text-[#211512] font-normal leading-tight mb-4">
+          Servicer Coffee
+        </h2>
+        <p class="text-[#5E473F] text-sm md:text-base leading-relaxed max-w-lg mb-8">
+          Moliot restieys try anage apeconterie rhundreen a nedicafell. July mar harage
+          to firewroval with fragrant bean blends and sweet comfort.
+        </p>
+        <a href="#coffee-experience" aria-label="Explore Servicer Coffee"
+           class="w-12 h-12 rounded-full bg-[#84351F] hover:bg-[#682715] flex items-center justify-center text-white shadow-md transition-all hover:scale-105">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer id="contact" data-purpose="site-footer"
+          class="bg-[#211512] text-[#D8C7BC] py-12 px-6 md:px-12 lg:px-20">
+
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 border-b border-[#3B2923] pb-8 mb-6">
+      <div class="flex items-center space-x-3">
+        <span class="font-script-logo text-3xl text-[#FAF5EC]">Frem</span>
+        <span class="text-xs tracking-wider uppercase text-[#9E8378]">| Boutique Patisserie</span>
+      </div>
+      <p class="text-xs text-[#9E8378] text-center md:text-right">
+        Fresh organic ingredients • Daily small-batch oven bake • Custom celebrations
+      </p>
+    </div>
+
+    <div id="about"
+         class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-xs text-[#8A7167]">
+      <p>© 2024 Frem Bakery Co. All rights reserved.</p>
+      <div class="flex space-x-6 mt-3 sm:mt-0">
+        <a href="#" class="hover:text-[#FAF5EC] transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-[#FAF5EC] transition-colors">Terms of Service</a>
+        <a href="#" class="hover:text-[#FAF5EC] transition-colors">Instagram</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Project Script -->
+  <script src="script.js"></script>
+</body>
+</html>

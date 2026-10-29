@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Cakes — Frem Artisanal Bakery &amp; Patisserie</title>
+  <meta name="description" content="Browse all 10 handcrafted cakes at Frem Bakery — Black Forest, Butterscotch, Pineapple, Chocolate Kitkat and more. Order fresh, artisanal cakes online.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Tailwind Custom Config (identical to index.html) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream:            '#F7EFE3',
+              'cream-light':    '#FAF5EC',
+              'cream-card':     '#FAF4EB',
+              peach:            '#E6BFB0',
+              'peach-soft':     '#ECD8CD',
+              terracotta:       '#84351F',
+              'terracotta-dark':'#6B2A18',
+              'pink-btn':       '#F1D8D3',
+              'pink-btn-hover': '#EAC7C0',
+              chocolate:        '#211512',
+              muted:            '#7A645B',
+            }
+          },
+          fontFamily: {
+            serif:  ['"Playfair Display"', 'Georgia', 'serif'],
+            script: ['"Great Vibes"', 'cursive'],
+            sans:   ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased">
+
+  <!-- ================================================================
+       HEADER  (identical structure to index.html)
+  ================================================================ -->
+  <header id="main-header" class="px-6 md:px-12 lg:px-20">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="index.html"
+         class="font-script-logo text-4xl md:text-5xl text-[#211512] tracking-wide hover:opacity-90 transition-opacity">
+        Frem
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-sm font-medium text-[#4A3B32]">
+        <a href="index.html#home"    class="hover:text-brand-terracotta transition-colors">Home</a>
+        <a href="index.html#explore" class="hover:text-brand-terracotta transition-colors">Explore</a>
+        <a href="cakes.html"         class="nav-active hover:text-brand-terracotta transition-colors">Our Cakes</a>
+        <a href="index.html#about"   class="hover:text-brand-terracotta transition-colors">About</a>
+        <a href="index.html#contact" class="hover:text-brand-terracotta transition-colors">Contact</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center space-x-3">
+        <!-- Cart Icon with badge -->
+        <a href="cakes.html" aria-label="Shopping cart"
+           class="relative p-2 text-[#4A3B32] hover:text-brand-terracotta transition-colors rounded-full hover:bg-[#EFE3D5]">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13M7 13L5.4 5M10 21a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+          </svg>
+          <span id="cart-badge"
+                class="cart-badge hidden">0</span>
+        </a>
+
+        <!-- Order Now -->
+        <a href="#catalog"
+           class="hidden sm:inline-flex bg-[#84351F] hover:bg-[#6E2A17] text-white text-xs md:text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-200 shadow-sm shadow-[#84351F]/20">
+          Order Now
+        </a>
+
+        <!-- Hamburger -->
+        <button id="mobile-menu-btn" aria-label="Open menu"
+                class="md:hidden p-2 text-[#4A3B32] hover:text-brand-terracotta transition-colors rounded-full hover:bg-[#EFE3D5]">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================================================================
+       MOBILE NAV OVERLAY
+  ================================================================ -->
+  <div id="mobile-nav"
+       class="hidden-nav fixed inset-0 z-[60] bg-[#F8F1E5] flex flex-col items-center justify-center space-y-8">
+    <button id="mobile-close-btn" aria-label="Close menu"
+            class="absolute top-6 right-6 p-2 text-[#4A3B32] hover:text-brand-terracotta transition-colors rounded-full hover:bg-[#EFE3D5]">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <span class="font-script-logo text-5xl text-[#211512]">Frem</span>
+    <nav class="flex flex-col items-center space-y-6 text-xl font-medium text-[#4A3B32]">
+      <a href="index.html#home"    class="hover:text-brand-terracotta transition-colors">Home</a>
+      <a href="index.html#explore" class="hover:text-brand-terracotta transition-colors">Explore</a>
+      <a href="cakes.html"         class="nav-active">Our Cakes</a>
+      <a href="index.html#about"   class="hover:text-brand-terracotta transition-colors">About</a>
+      <a href="index.html#contact" class="hover:text-brand-terracotta transition-colors">Contact</a>
+    </nav>
+    <a href="#catalog"
+       class="bg-[#84351F] hover:bg-[#6E2A17] text-white text-sm font-medium px-8 py-3 rounded-full transition-all duration-200 shadow-sm">
+      Order Now
+    </a>
+  </div>
+
+  <!-- ================================================================
+       PAGE INTRO / HERO SECTION
+  ================================================================ -->
+  <section class="catalog-intro px-6 md:px-12 lg:px-20">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">›</span>
+        <span class="text-[#211512] font-medium">Our Cakes</span>
+      </nav>
+
+      <!-- Heading -->
+      <div class="reveal">
+        <h1 class="font-serif-heading text-4xl sm:text-5xl text-[#211512] font-normal leading-tight mb-3">
+          Our Cakes
+        </h1>
+        <p class="text-[#7A645B] text-sm md:text-base max-w-xl">
+          Handcrafted with love, baked fresh, and made to sweeten every celebration.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================
+       CATALOG SECTION
+  ================================================================ -->
+  <main id="catalog" class="px-6 md:px-12 lg:px-20 py-10 max-w-7xl mx-auto">
+
+    <!-- Results bar -->
+    <div class="catalog-bar">
+      <p class="catalog-bar__count">Showing <strong class="text-[#211512]">10</strong> handcrafted cakes</p>
+      <span class="text-xs text-[#9E8378]">Fresh baked • Small batch • Artisanal</span>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="catalog-grid">
+
+      <!-- ── 1. Black Forest Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFSZi-3Wy2IAd4O-krMQSeQFCaAUSsLVQZ5KvnIchxSe5WBrmUm0Qn7Adpf-lqzm1hYNITPB3eOezkU6YoTPioxuc_5jI9l7i0GoJiASpt6JuwAxdfuy9t5fM8KL7BfxelLYvpeTP-hXljB05jRE_wOk0PIg_RS43NQWG8Ax_7s=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="Black Forest Cake — chocolate, cherries and whipped cream"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">Black Forest Cake</p>
+          <p class="catalog-card__meta">500 gm</p>
+          <p class="catalog-card__desc">A symphony of chocolate, cherries, and whipped cream perfection.</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹329.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="black-forest"
+              data-name="Black Forest Cake"
+              data-price="329"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFSZi-3Wy2IAd4O-krMQSeQFCaAUSsLVQZ5KvnIchxSe5WBrmUm0Qn7Adpf-lqzm1hYNITPB3eOezkU6YoTPioxuc_5jI9l7i0GoJiASpt6JuwAxdfuy9t5fM8KL7BfxelLYvpeTP-hXljB05jRE_wOk0PIg_RS43NQWG8Ax_7s=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add Black Forest Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 2. Butterscotch Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFSTLpVzF8SC797EPA1rj4__GwVxPhOXngk3d5WiOVbIVlIKKraKP4twi5jqrYqb8AxpQCVg1H0WzyMgNun-2HjvsFFPugvoM-fqpDBas8kS_PlGYlhpbCvbslLPTG1oShtaIamRFrq8TYeK-68dpWmlR3FENzTr9_HQ8FDUSPg=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="Butterscotch Cake — moist cake with butterscotch frosting"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">Butterscotch Cake</p>
+          <p class="catalog-card__meta">&nbsp;</p>
+          <p class="catalog-card__desc">A moist and flavorful cake infused with rich butterscotch flavor, topped with a creamy butterscotch frosting.</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹319.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="butterscotch"
+              data-name="Butterscotch Cake"
+              data-price="319"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFSTLpVzF8SC797EPA1rj4__GwVxPhOXngk3d5WiOVbIVlIKKraKP4twi5jqrYqb8AxpQCVg1H0WzyMgNun-2HjvsFFPugvoM-fqpDBas8kS_PlGYlhpbCvbslLPTG1oShtaIamRFrq8TYeK-68dpWmlR3FENzTr9_HQ8FDUSPg=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add Butterscotch Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 3. Pineapple Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFTREqcFOD_DdVARe42ZQyDbvQ_pooC83wYOEqOBGKdOcKNqC2x-sfvoFXQaga7S3jQDeCf2cMY1nW5y1su6Lh7YvEgek9ZFfdwaU9PY5NtpIsv4QP9-U052xplxqHqKoUudDoBFBqOhKqcDRy7dypRk3OdEGaZ4-YHns3vvBoE=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="Pineapple Cake — tropical pineapple delight"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">Pineapple Cake</p>
+          <p class="catalog-card__meta">500 gm</p>
+          <p class="catalog-card__desc">Pineapple bliss: irresistible cake infused with tropical delight.</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹299.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="pineapple"
+              data-name="Pineapple Cake"
+              data-price="299"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFTREqcFOD_DdVARe42ZQyDbvQ_pooC83wYOEqOBGKdOcKNqC2x-sfvoFXQaga7S3jQDeCf2cMY1nW5y1su6Lh7YvEgek9ZFfdwaU9PY5NtpIsv4QP9-U052xplxqHqKoUudDoBFBqOhKqcDRy7dypRk3OdEGaZ4-YHns3vvBoE=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add Pineapple Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 4. White Forest Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFSpyWTDA6TVbnwKh-fpdEbDEaaYWviI89o-Lk_xzytKYII6gQ8yV0YpMoSvcTxpYOQvrfKvco5YtHAMWLU2GoOGUVOS_etWP4MBDg4PW9ROj5NWd3kNOzGqVwRUZWSjmFuqYOPiMpAxpjcFYfx_m_Kvqy-eLhU9K4A2jJMCNQ=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="White Forest Cake — fluffy white layers and white chocolate"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">White Forest Cake</p>
+          <p class="catalog-card__meta">500 gm</p>
+          <p class="catalog-card__desc">A heavenly blend of fluffy white layers and luscious white chocolate filling, crowned with a cloud of whipped cream.</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹329.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="white-forest"
+              data-name="White Forest Cake"
+              data-price="329"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFSpyWTDA6TVbnwKh-fpdEbDEaaYWviI89o-Lk_xzytKYII6gQ8yV0YpMoSvcTxpYOQvrfKvco5YtHAMWLU2GoOGUVOS_etWP4MBDg4PW9ROj5NWd3kNOzGqVwRUZWSjmFuqYOPiMpAxpjcFYfx_m_Kvqy-eLhU9K4A2jJMCNQ=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add White Forest Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 5. Chocolate Crunch Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFTmJaRju9hkYzfZRpOnRiQLmCFsYlCy14Eal-elGY23Ps-G2aUjc8vRgDrn04b9KSgA0cMB2MnlgZrqT2iFI-vdCPus4nm9aWzbcZPFq-KqT_5xXi-UgSAjYdy57v0Fa-UGLsHNQ0US3Zi9g0UsOvKjaCCVK1R4jGiY5QLLRyk=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="Chocolate Crunch Cake — rich cocoa with delightful crunch"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">Chocolate Crunch Cake</p>
+          <p class="catalog-card__meta">500 gm</p>
+          <p class="catalog-card__desc">A symphony of rich cocoa and delightful crunch in every bite!</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹369.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="choco-crunch"
+              data-name="Chocolate Crunch Cake"
+              data-price="369"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFTmJaRju9hkYzfZRpOnRiQLmCFsYlCy14Eal-elGY23Ps-G2aUjc8vRgDrn04b9KSgA0cMB2MnlgZrqT2iFI-vdCPus4nm9aWzbcZPFq-KqT_5xXi-UgSAjYdy57v0Fa-UGLsHNQ0US3Zi9g0UsOvKjaCCVK1R4jGiY5QLLRyk=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add Chocolate Crunch Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 6. Choco Chips Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFQRUNcNQcPV94ZoLpiF8WrNXkMWcrmdpbPBxqtMEq5x63LLRwPZCRJQE7Mk277pGWoO7s3w_7wDM1vDL5sYodU6yUqj3S5GIJnUY1NQOzBHK1QNVxQ8pYEpkNHEsJKEuNKh9H6FFE7EOvS5u9rsvFkZ_tAc1dNF41Hg31s7NU0=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="Choco Chips Cake — chocolate with choco chips"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">Choco Chips Cake</p>
+          <p class="catalog-card__meta">500 gm</p>
+          <p class="catalog-card__desc">A divine fusion of rich chocolate and delightful choco chips.</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹369.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="choco-chips"
+              data-name="Choco Chips Cake"
+              data-price="369"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFQRUNcNQcPV94ZoLpiF8WrNXkMWcrmdpbPBxqtMEq5x63LLRwPZCRJQE7Mk277pGWoO7s3w_7wDM1vDL5sYodU6yUqj3S5GIJnUY1NQOzBHK1QNVxQ8pYEpkNHEsJKEuNKh9H6FFE7EOvS5u9rsvFkZ_tAc1dNF41Hg31s7NU0=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add Choco Chips Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 7. Chocolate Delight Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFQ9qDQKVzuqpfa6J90LaceIuAFQVeoOQIFWElhnE7t2KgEEw9R02wXmLcWmYypGpoIuEtdm-eX7qBNYg2mVuTWc3-2Wm5fAXDPDlOw6IW2vjEqg7xxtf1lWCVOciKVfQQy9tFIH4EIMJgIoljVh0znT3H3WHm8iHGdNMVXWDA=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="Chocolate Delight Cake — rich and irresistible chocolate"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">Chocolate Delight Cake</p>
+          <p class="catalog-card__meta">500 gm</p>
+          <p class="catalog-card__desc">Indulge in the rich and irresistible decadence of this delectable Chocolate Delight Cake.</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹349.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="choco-delight"
+              data-name="Chocolate Delight Cake"
+              data-price="349"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFQ9qDQKVzuqpfa6J90LaceIuAFQVeoOQIFWElhnE7t2KgEEw9R02wXmLcWmYypGpoIuEtdm-eX7qBNYg2mVuTWc3-2Wm5fAXDPDlOw6IW2vjEqg7xxtf1lWCVOciKVfQQy9tFIH4EIMJgIoljVh0znT3H3WHm8iHGdNMVXWDA=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add Chocolate Delight Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 8. Strawberry Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFQhBGb8sZmZeRtteteiEimoDSjW40UO7yZxggIM1XS9Lr1Ki_8WjD8CIgMmRKr1dBIkUDRMFdl-dzJw3C1ebPfi9SN6e7-ti1T8azW1DJdHrmu3Fr-hu0L4v3t0xn51sC623nglj6Am4FeruZGImTY_ojvxU3ryExb-PwoA_IQ=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="Strawberry Cake — luscious strawberry flavor"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">Strawberry Cake</p>
+          <p class="catalog-card__meta">500 gm</p>
+          <p class="catalog-card__desc">A burst of luscious strawberry flavor in every slice.</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹299.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="strawberry"
+              data-name="Strawberry Cake"
+              data-price="299"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFQhBGb8sZmZeRtteteiEimoDSjW40UO7yZxggIM1XS9Lr1Ki_8WjD8CIgMmRKr1dBIkUDRMFdl-dzJw3C1ebPfi9SN6e7-ti1T8azW1DJdHrmu3Fr-hu0L4v3t0xn51sC623nglj6Am4FeruZGImTY_ojvxU3ryExb-PwoA_IQ=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add Strawberry Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 9. Choco Vanilla Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFTIMod0NPqxfbwVxF8bZYZMm-2sZWXzjjTbtrYFPt-vDffp6Tng0oS0BqfGiI9PqlKg8t2cuLektkM-soJmA4iyGkVvjZ6emL7Rzl9Pm5wL3FU4ear1t0teP3UlYMPudl3R9Wgre1RE_ntt9grPEJdv-lyNPsL2TGL_hzRTJc=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="Choco Vanilla Cake — chocolate and vanilla combination"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">Choco Vanilla Cake</p>
+          <p class="catalog-card__meta">500 gm</p>
+          <p class="catalog-card__desc">A delightful, indulgent combination of chocolate and vanilla in a delectable cake.</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹329.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="choco-vanilla"
+              data-name="Choco Vanilla Cake"
+              data-price="329"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFTIMod0NPqxfbwVxF8bZYZMm-2sZWXzjjTbtrYFPt-vDffp6Tng0oS0BqfGiI9PqlKg8t2cuLektkM-soJmA4iyGkVvjZ6emL7Rzl9Pm5wL3FU4ear1t0teP3UlYMPudl3R9Wgre1RE_ntt9grPEJdv-lyNPsL2TGL_hzRTJc=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add Choco Vanilla Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── 10. Chocolate Kitkat Cake ── -->
+      <article class="catalog-card reveal" tabindex="0">
+        <div class="catalog-card__img-wrap">
+          <img
+            src="https://lh3.googleusercontent.com/food/AGNROFRPNVvQwfm3JAZHX0lySuQjDgGZeLrySuzjuEYy40fW4z3sb2AEsBqZwdeoOz24wXgB-lzkdYpsO8ExETZpHiph2YAvkt3ng2GDymFng9egU-KtCS2mK4BOKCYpam9V9ebamPGDek71XAWWzmC2P9wZ6cVQOIAD_ZCFHKGng8Y=s400-w400-h400-n-e1-rw-k-v1-no"
+            alt="Chocolate Kitkat Cake — layers of rich chocolate with Kitkat"
+            loading="lazy"
+          >
+        </div>
+        <div class="catalog-card__body">
+          <p class="catalog-card__name">Chocolate Kitkat Cake</p>
+          <p class="catalog-card__meta">500 gm</p>
+          <p class="catalog-card__desc">Layers of rich chocolate goodness infused with the iconic KitKat crunch.</p>
+          <div class="catalog-card__footer">
+            <span class="catalog-card__price">₹379.00</span>
+            <button
+              class="btn-add-cart"
+              data-id="choco-kitkat"
+              data-name="Chocolate Kitkat Cake"
+              data-price="379"
+              data-image="https://lh3.googleusercontent.com/food/AGNROFRPNVvQwfm3JAZHX0lySuQjDgGZeLrySuzjuEYy40fW4z3sb2AEsBqZwdeoOz24wXgB-lzkdYpsO8ExETZpHiph2YAvkt3ng2GDymFng9egU-KtCS2mK4BOKCYpam9V9ebamPGDek71XAWWzmC2P9wZ6cVQOIAD_ZCFHKGng8Y=s125-w125-h125-n-e1-rw-k-v1-no"
+              aria-label="Add Chocolate Kitkat Cake to cart">
+              + Add to Cart
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /catalog-grid -->
+  </main>
+
+  <!-- ================================================================
+       FOOTER (identical to index.html)
+  ================================================================ -->
+  <footer id="contact" data-purpose="site-footer"
+          class="bg-[#211512] text-[#D8C7BC] py-12 px-6 md:px-12 lg:px-20 mt-16">
+
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 border-b border-[#3B2923] pb-8 mb-6">
+      <div class="flex items-center space-x-3">
+        <span class="font-script-logo text-3xl text-[#FAF5EC]">Frem</span>
+        <span class="text-xs tracking-wider uppercase text-[#9E8378]">| Boutique Patisserie</span>
+      </div>
+      <p class="text-xs text-[#9E8378] text-center md:text-right">
+        Fresh organic ingredients • Daily small-batch oven bake • Custom celebrations
+      </p>
+    </div>
+
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between text-xs text-[#8A7167]">
+      <p>© 2024 Frem Bakery Co. All rights reserved.</p>
+      <div class="flex space-x-6 mt-3 sm:mt-0">
+        <a href="#" class="hover:text-[#FAF5EC] transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-[#FAF5EC] transition-colors">Terms of Service</a>
+        <a href="#" class="hover:text-[#FAF5EC] transition-colors">Instagram</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Toast container (injected by JS) -->
+  <div id="toast-container"></div>
+
+  <!-- Shared Script -->
+  <script src="script.js"></script>
+</body>
+</html>
